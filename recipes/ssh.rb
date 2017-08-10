@@ -48,7 +48,7 @@ execute 'Start sshd' do
     cwd 'C:\cygwin\bin' 
     environment ({'PATH' => '$PATH:.:/cygdrive/c/cygwin/bin'})
     command 'cygrunsrv -S sshd'
-    not_if ('cygrunsrv -Q sshd').include? 'Running'
+    not_if ('cygrunsrv -Q sshd').include?('Running')
 end
 
 windows_firewall_rule 'ssh' do
