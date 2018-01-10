@@ -14,9 +14,4 @@
 
 default['cygwin']['ssh']['sshd_user'] = 'cyg_server'
 default['cygwin']['ssh']['sshd_passwd'] = nil
-default['cygwin']['ssh']['kexalgorithms'] = 'diffie-hellman-group-exchange-sha1,
-                                            diffie-hellman-group1-sha1,
-                                            ecdh-sha2-nistp521,
-                                            ecdh-sha2-nistp384,
-                                            ecdh-sha2-nistp256,
-                                            diffie-hellman-group-exchange-sha256'
+default['cygwin']['ssh']['kexalgorithms'] = 'diffie-hellman-group-exchange-sha1,diffie-hellman-group1-sha1,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256'
