@@ -48,6 +48,8 @@ Key | Type | Description | Default
 --- | ---- | ----------- | -------
 `['cygwin']['ssh']['sshd_user']` | String | User to run sshd as | `cyg_server`
 `['cygwin']['ssh']['sshd_passwd']` | String | Password for the sshd user | `nil`
+`['cygwin']['ssh']['kexalgorithms']` | String | List of hashes to support | `nil`
+
 
 ## License and Authors
 

@@ -14,7 +14,7 @@
 
 include_recipe "cygwin::default"
 
-if node['cygwin']['ssh']['sshd_passwd'].nil? 
+if node['cygwin']['ssh']['sshd_passwd'].nil?
     raise "You MUST define a password for the sshd privileged user in your attributes! (node['cygwin']['ssh']['sshd_passwd'])"
 end
 
@@ -26,8 +26,12 @@ packages.each do |pkg|
     end
 end
 
+template 'C:/cygwin/etc/sshd_config' do
+  source 'sshd_config.erb'
+end
+
 execute 'Stop sshd' do
-    cwd 'C:\cygwin\bin' 
+    cwd 'C:\cygwin\bin'
     environment ({'PATH' => '$PATH:.:/cygdrive/c/cygwin/bin'})
     command 'cygrunsrv -E sshd'
     only_if 'cygrunsrv -Q sshd'
@@ -37,7 +41,7 @@ execute 'Configure sshd service' do
     cwd 'C:\cygwin\bin'
     environment ({'PATH' => '$PATH:.:/cygdrive/c/cygwin/bin'})
     command "bash /usr/bin/ssh-host-config --yes --cygwin \"ntsec\" --user #{node['cygwin']['ssh']['sshd_user']} --pwd \"#{node['cygwin']['ssh']['sshd_passwd']}\" "
-    not_if('cygrunsrv -Q sshd').include? 'Running' 
+    not_if('cygrunsrv -Q sshd').include? 'Running'
 end
 
 execute 'Make sure the password does not expire' do
@@ -45,7 +49,7 @@ execute 'Make sure the password does not expire' do
 end
 
 execute 'Start sshd' do
-    cwd 'C:\cygwin\bin' 
+    cwd 'C:\cygwin\bin'
     environment ({'PATH' => '$PATH:.:/cygdrive/c/cygwin/bin'})
     command 'cygrunsrv -S sshd'
     not_if ('cygrunsrv -Q sshd').include?('Running')

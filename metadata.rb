@@ -6,7 +6,7 @@ maintainer_email 'engops@bluemedora.com'
 license          'Apache 2.0'
 description      'Installs/Configures cygwin'
 long_description 'Installs/Configures cygwin'
-version          '0.7.1'
+version          '0.7.2'
 
 supports 'windows', '> 0.0'
 depends 'windows', '> 0.0'
